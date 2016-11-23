@@ -1,0 +1,23 @@
+{
+  "name": "Toddler Colors",
+  "short_name": "ToddlerColors",
+  "description": "Color learning webgame for toddlers by StewVed",
+  "lang": "en",
+  "scope": "/",
+  "start_url": "index.html",
+  "display": "fullscreen",
+  "theme_color": "antiquewhite",
+  "background_color": "antiquewhite",
+  "icons": [{
+    "src": "favicon.svg"
+  }, {
+    "src": "favicon.png",
+    "sizes": "64x64",
+    "type": "image/png"
+  }, {
+    "src": "favicon256.png",
+    "sizes": "256x256",
+    "type": "image/png"
+  }
+  ]
+}
