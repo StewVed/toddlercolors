@@ -14,6 +14,10 @@ body {
   font-size: 0.4em;
   font-weight: bold;
   transition: 0s;
+  text-rendering: optimizeLegibility;
+}
+.ctext:first-letter {
+    text-transform: uppercase;
 }
 .cting {
   position: absolute;

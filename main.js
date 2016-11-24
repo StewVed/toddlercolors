@@ -5,26 +5,26 @@ var nums = []
 , globVol = .33 //the volume of the beeps in the game.
 , randing = 0 //whether the game is generating and playing the new number sequence
 , buttons = 7 //how many buttons to use in the game - 4 by default
-, clrs = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
+, clrs = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'pink']
 , hsls = [
    'hsl(0, 100%, 50%)'
- , 'hsl(39, 100%, 50%)'
+ , 'hsl(31, 100%, 50%)'
  , 'hsl(60, 100%, 48%)'
- , 'hsl(120, 100%, 40%)'
- , 'hsl(240, 100%, 60%)'
- , 'hsl(275, 100%, 35%)'
- , 'hsl(300, 76%, 65%)']
+ , 'hsl(120, 100%, 45%)'
+ , 'hsl(230, 100%, 50%)'
+ , 'hsl(270, 100%, 50%)'
+ , 'hsl(320, 100%, 50%)']
  , hslLs = [
    'hsl(0, 100%, 80%)'
- , 'hsl(39, 100%, 80%)'
+ , 'hsl(31, 100%, 80%)'
  , 'hsl(60, 100%, 80%)'
- , 'hsl(120, 100%, 70%)'
- , 'hsl(240, 100%, 80%)'
- , 'hsl(275, 100%, 60%)'
- , 'hsl(300, 76%, 90%)']
-, combo
-, score
-, turns
+ , 'hsl(120, 100%, 75%)'
+ , 'hsl(230, 100%, 80%)'
+ , 'hsl(270, 100%, 80%)'
+ , 'hsl(320, 100%, 80%)']
+, combo = 0
+, score = 0
+, turns = 0
 , threshold
 , level = 1 //starting/current level
 , t = 600 //for how long something takes to animate... pause time.
@@ -53,6 +53,7 @@ function InitMain() {
   swatch();
 
   resize();
+  initCombo();
   newGame();
 }
 function createButtons() {
@@ -139,12 +140,33 @@ function resize() {
 function reHeightText() {
   document.getElementById('ctext').style.top = (((document.getElementById('game').offsetHeight *.97) - document.getElementById('ctext').offsetHeight) / 2) + 'px';
 }
-function randNums() {
+function initCombo() {
+  //make sure the nums array is empty
   nums = [];
-  for (var x = 0; x < level; x++) {
+  //randomize a number for teh first element of the array
+  nums.push(randNum());
+  //loop through the amount of combinations, then add 2 more,
+  //so that there will never be the same color twice in a row, or once removed. (for variety)
+    nums.push(randNum());
+    while (nums[nums.length - 1] === nums[nums.length - 2]) {
+      //this is the same number as the last one... retry
+      nums[nums.length - 1] = randNum();
+    }
+}
+function randCombo() {
+  for (var x = 2; x < (level + 2); x++) {
     // randomize which button is 'pressed' for each 'tick'
-    nums.push(Math.round(Math.random() * (buttons - 1)));
+    nums.push(randNum());
+    while (nums[nums.length - 1] === nums[nums.length - 2] || nums[nums.length - 1] === nums[nums.length - 3]) {
+      //this is the same number as one of the last two... retry
+      nums[nums.length - 1] = randNum();
+    }
+    //remove the first element in the array, so the whole length remains 2 above the current level.
+    nums.shift();
   }
+}
+function randNum() {
+  return Math.round(Math.random() * (buttons - 1));
 }
 function newGame() {
   window.clearTimeout(playing);
@@ -152,7 +174,7 @@ function newGame() {
   Win = 1;
   turn = 0;
   randing = 1;
-  randNums();
+  randCombo();
   //in this game, there will only ever be one sequence, but I will leave the code for color memory game.
   playing = window.setTimeout(function() {
     playSequence(0);
@@ -165,7 +187,7 @@ function playSequence(x) {
   //let us make this one go up in a scale, since there are 7...(TODO)
   soundBeep('sine', 500, 1, 100);
   x++;
-  if (x < nums.length) {
+  if (x < level) {
     playing = window.setTimeout(function() {
       playSequence(x);
     }, t);
