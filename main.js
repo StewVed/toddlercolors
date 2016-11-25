@@ -11,7 +11,7 @@ var nums = []
  , 'hsl(31, 100%, 50%)'
  , 'hsl(60, 100%, 48%)'
  , 'hsl(120, 100%, 45%)'
- , 'hsl(230, 100%, 50%)'
+ , 'hsl(220, 100%, 50%)'
  , 'hsl(270, 100%, 50%)'
  , 'hsl(320, 100%, 50%)']
  , hslLs = [
@@ -19,7 +19,7 @@ var nums = []
  , 'hsl(31, 100%, 80%)'
  , 'hsl(60, 100%, 80%)'
  , 'hsl(120, 100%, 75%)'
- , 'hsl(230, 100%, 80%)'
+ , 'hsl(220, 100%, 80%)'
  , 'hsl(270, 100%, 80%)'
  , 'hsl(320, 100%, 80%)']
 , combo = 0
@@ -207,6 +207,7 @@ function newGame() {
 }
 function playSequence(x) {
   //ButtonBackColor(nums[x]);
+  document.getElementById('ctext').style.fontSize = '0.4em';
   document.getElementById('ctext').innerHTML = clrs[nums[x]];
   reHeightText();
   //let us make this one go up in a scale, since there are 7...(TODO)

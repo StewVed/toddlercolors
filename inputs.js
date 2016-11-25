@@ -216,7 +216,8 @@ function mouseClick() {
       combo = (level - 1);
     }
     else {
-      document.getElementById('ctext').innerHTML = 'Correct!'
+      document.getElementById('ctext').innerHTML = '&#10004;'
+      document.getElementById('ctext').style.fontSize = '1.5em';
     }
     reHeightText();
     combo++;
