@@ -130,8 +130,10 @@ self.addEventListener('fetch', function(event) {
   event.respondWith(caches.open(CACHE_NAME).then(function(cache) {
     return cache.match(event.request).then(function(response) {
       var fetchPromise = fetch(event.request).then(function(networkResponse) {
-        cache.put(event.request, networkResponse.clone());
-        return networkResponse;
+        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        }
       })
       return response || fetchPromise;
     })
