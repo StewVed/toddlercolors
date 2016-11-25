@@ -53,7 +53,7 @@ function storageSave(toSave, dataToSave) {
     if (!document.getElementById('storY')) {
       saveY = [toSave, dataToSave];
       //temporerily store the data in this variable.
-      var message = '<p>Remember preferences?</p><button id="storY" class="uButtons uButtonGreen" type="button " style="font-size:1.5em;width:30%;margin:4px;float:left;">Yes</button>' + '<button id="storN" class="uButtons uButtonRed" type="button" style="font-size:1.5em;width:30%;margin:4px;float:right;">No</button>';
+      var message = '<p style="font-size:0.3em;margin-bottom:0.5em;">Remember preferences?</p><button id="storY" class="uButtons uButtonGreen buttonYN" type="button " style="float:left;">Yes</button>' + '<button id="storN" class="uButtons uButtonRed buttonYN" type="button" style="float:right;">No</button>';
       notifyShow(message);
     }
   }
@@ -64,7 +64,8 @@ function notifyShow(message) {
     //create a semi-opaque rounded rectangle on the top-right, and put the message into it.
     var newWindow = document.createElement('div');
     newWindow.id = 'noty';
-    var xButton = '<div id="notyClose" class="uButtonRed">X</div>';
+    newWindow.classList = 'noty';
+    var xButton = '<div id="notyClose" class="uButtonRed buttonClose">X</div>';
     //look for buttons etc and add the notifier's id nunmber to it
     message = message.replace(/ id="_/gi, ' id="_');
     //case insensetive and global

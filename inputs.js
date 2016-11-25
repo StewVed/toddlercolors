@@ -238,10 +238,10 @@ function mouseClick() {
   } else if (targ.id === 'set') {
     //settings button
     toggleSettings();
-  } else if (targ.id === 'notyClose') {
+  } else if (targ.id.slice(-5) === 'Close') {
     //Notify popup close button
     //close the notifier
-    document.getElementById('noty').parentNode.removeChild(document.getElementById('noty'));
+    targ.parentNode.parentNode.removeChild(targ.parentNode);
   } else if (targ.id.slice(0, 4) === 'stor') {
     //Storage Notify Yes button
     storageChoose(targ.id.slice(-1));

@@ -7,6 +7,8 @@ body {
   text-align: center;
   overflow: hidden;
   margin: 0;
+  height: 100%;
+  width: 100%;
   font-family: sans-serif;
 }
 .ctext {
@@ -21,7 +23,6 @@ body {
 }
 .cting {
   position: absolute;
-  /* border: 1px solid black; */
   left: 50%;
   width: 0%;
 }
@@ -42,7 +43,8 @@ body {
   padding: 0;
   border-radius: 640px;
   transition: 0s;
-  /* border: black solid; */
+  width: 100%;
+  height: 100%;
 }
 
 .cont {
@@ -57,7 +59,6 @@ body {
   overflow: hidden;
   float: left;
 }
-
 
 #scoreInner {
   width: 100%;
@@ -141,7 +142,11 @@ body {
   margin-left: 0;
   border-left: 0;
 }
-
+.buttonYN {
+  font-size:0.5em;
+  width:30%;
+  margin: 2%;
+}
 #pc {
   display: inline-block;
   width: 75%;
@@ -186,34 +191,52 @@ body {
 }
 
 .fsButton {
-  display: inline-block;
+  position:absolute;
+  box-sizing: border-box;
+  margin-right: 0%;
+  padding: 0 1%;
 }
-
-.fsInner {
-  transform: scale(1.3,0.9);
-  font-weight: bolder;
-  display: inline-block;
-  padding-top: 4px;
-  line-height: 80%;
-  1% */ padding-top: 1;
+.fsd {
+  transform: scale(1,0.8);
+  transition: transform 0.1s;
+  line-height: 70%;
+  padding: 0;
+  margin: 0;
+}
+.fsd:hover {
+  transform: scale(1.05,.85);
+  transition:0.2s;
+  opacity:1;
+}
+.fsd:active {
+  transform: scale(.95,.75);
+  transition:0.05s;
+}
+.fsu {
+  transform: scale(1.05,.85);
+  transition: transform 0.1s;
+  line-height: 70%;
+  padding: 0;
+  margin: 0;
+}
+.fsu:hover {
+  transform: scale(1,0.8);
+  transition:0.2s;
+  opacity:1;
+}
+.fsu:active {
+  transform: scale(.95,.75);
+  transition:0.05s;
 }
 
 #set {
-  display: inline-block;
-  margin-left: 2%;
-  padding: 0% 2.5% 1% 2.5%;
-  line-height: 100%;
-  padding-top: 1.5%;
-  width: 20%;
-}
-
-#settns {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: antiquewhite;
+  line-height: 100%;
+  margin: 1%;
+  left: 0px;
+  top: 0px;
+  font-size: .5em;
+  padding: 0.5% 3%;
 }
 
 .vImg {
@@ -223,55 +246,58 @@ body {
 }
 
 .sliderCont {
-  margin: 1% 0%;
+  /* margin: 0; */
   background: linear-gradient(#ddd, #777);
   border: 1px solid #000;
   border-radius: 640px;
   clear: both;
-  width: 90%;
-  left: 5%;
+  width: 96%;
+  left: 2%;
   position: relative;
-  font-size: 0.2em;
-  overflow: visible;
-  height: 5%;
+  font-size: 0.3em;
+  /* overflow: visible; */
+  /* height: 5%; */
+  margin-bottom: 3%;
 }
 
 .sliderInner {
-  position: relative;
+  position: absolute;
   border-radius: 64px;
   background: radial-gradient(farthest-side at 33% 33% , #fff, #333);
   border: 1px solid #000;
-  top: -140%;
+  top: -50%;
   left: 28.4%;
-  width: 14%;
-  height: 250%;
+  width: 19%;
+  height: 200%;
 }
 
-#noty {
+.noty {
   width: 90%;
   left: 5%;
   position: absolute;
+  box-sizing:border-box;
   border: 2px solid hsl(0, 0%, 0%);
   border-radius: 10px;
   padding: 1%;
-  font-weight: bold;
-  background-color: antiquewhite;
+  background-color: hsla(34, 78%, 91%, 0.95);
   opacity: 0;
   transition: opacity .5s;
+  font-size: 0.9em;
+  padding-bottom: 2%;
 }
 
-#notyClose {
+
+.buttonClose {
   position: absolute;
-  top: -12px;
-  left: calc(100% - 22px);
-  height: 26px;
-  width: 27px;
+  top: -10%;
+  left: 91%;
+  /* height: 30%; */
+  /* width: 15%; */
   border: 2px solid hsl(0, 0%, 0%);
   font-weight: bold;
-  padding: 1%;
-  line-height: 100%;
-  0% */ font-size: 1.2em;
-  font-size: 1.7em;
+  padding: 0% 2.5%;
+  /* line-height: 112%; */
+  font-size: 0.4em;
   border-radius: 640px;
   margin: 0;
 }

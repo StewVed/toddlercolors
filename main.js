@@ -36,7 +36,14 @@ function InitMain() {
   /*
     create the amount of circles that the user will play.
 */
-  document.body.innerHTML = '<div id="game">' + createButtons() + '</div>' + '<div id="settns" style="visibility:hidden;">' + createSettings() + '</div>' + '';
+  document.body.innerHTML = '<div id="cont" style="position:absolute;">' +
+  '<div id="game">' + createButtons() + '</div>' +
+  '<div id="set"class="uButtons uButtonGrey">&#9776;</div>' + 
+  '<div id="fs" class="uButtons uButtonGrey fsButton">' +
+    '<div id="fsI" class="fsd">&#9974;</div>' +
+  '</div>' +
+  '</div>' +
+  '';
   //check for saved data. If set, the user has chosed to either save or not save data.
   storageCheck();
   //check if the user has modified the volume level:
@@ -57,8 +64,8 @@ function InitMain() {
   newGame();
 }
 function createButtons() {
-  var a = '<div id = "ctext" class="cont ctext">let\'s go!</div>';
-  //create empty string
+  var a = '<div id = "ctext" class="cont ctext">let\'s go!</div>' ;
+
   for (var x = 0; x < buttons; x++) {
     //add element to be a button
     a += '<div id = "c' + x + '" class="cting">' +
@@ -69,8 +76,24 @@ function createButtons() {
 }
 
 function createSettings() {
-  return '<div id="scoreText">Turn:0</div>' + '<button id="mem" type="button" class="uButtonLeft uButtons uButtonGreen" style="clear:both;width:50%;">Memory</button>' + '<button id="ges" type="button" class="uButtons uButtonGrey uButtonRight" ' + 'style="width:40%;padding-left:4px;margin-left:-1px;">Guess</button>' + '<div id="fs" class="uButtons uButtonGrey fsButton">' + '<span id="fsI" class="fsInner">&#9974;</span> Fullscreen' + '</div>' + '<br>' + '<div class="vImg">&#9698;</div>' + '<div id="vol%" style="display:inline-block;">33%</div>' + '<div id="vol-Cv" class="sliderCont">&nbsp;' + '<div id="vol-Iv" class="sliderInner">&nbsp;</div>' + //Off ♫ &#128266;
-  '</div>' + '';
+  var zVol = (globVol*100).toFixed(0);
+  //create a semi-opaque rounded rectangle on the top-right, and put the message into it.
+  var newWindow = document.createElement('div');
+  newWindow.id = 'settns';
+  newWindow.classList = 'noty';
+
+  newWindow.innerHTML = 
+    '<div id="setClose" class="uButtonRed buttonClose">X</div>' +
+    '<div class="vImg">&#9698;</div>' + '<div id="vol%" style="display:inline-block;left:' + zVol + '%;">' + zVol + '%</div>' + 
+    '<div id="vol-Cv" class="sliderCont">&nbsp;' + 
+      '<div id="vol-Iv" class="sliderInner">&nbsp;</div>' + //Off ♫ &#128266;
+  '</div>';
+  document.getElementById('cont').appendChild(newWindow);
+  //next, place the menu.
+  var settns = document.getElementById('settns');
+  //center the notify popup
+  newWindow.style.top = Math.round((document.getElementById('cont').offsetHeight - newWindow.offsetHeight) / 2) + 'px';
+  newWindow.style.opacity = .98;
 }
 
 function swatch() {
@@ -98,10 +121,11 @@ function resize() {
     portraitLayout = 0;
   }
   var zGame = document.getElementById('game');
+  var zCont = document.getElementById('cont');
+  zCont.style.fontSize = a * 1.5 + '%';
   //simple method of scaling the entire thing - make the font size a percent of the space.
-  zGame.style.width = zGame.style.height = zGame.style.borderRadius = document.getElementById('settns').style.width = document.getElementById('settns').style.height = a + 'px';
-  zGame.style.fontSize = a * 1.5 + '%';
-  /*
+  zCont.style.width = zCont.style.height = zGame.style.borderRadius = a + 'px';
+ /*
      make the circles the correct size.
   */
   var a1 = Math.floor(a * .01);
@@ -127,18 +151,25 @@ function resize() {
       document.getElementById('c' + x).style.top = ctop + 'px';
     }
   }
-  document.getElementById('settns').style.fontSize = a + '%';
   if (portraitLayout) {
-    zGame.style.top = Math.round((b / 2) - c1) + 'px';
-    zGame.style.left = '0px';
+    zCont.style.top = 
+    Math.round((b / 2) - c1) + 'px';
+    zCont.style.left = '0px';
   } else {
-    zGame.style.left = Math.round((b / 2) - c1) + 'px';
-    zGame.style.top = '0px';
+    zCont.style.left = 
+    Math.round((b / 2) - c1) + 'px';
+    zCont.style.top = '0px';
   }
     reHeightText();
+    moveFSbutton();
 }
 function reHeightText() {
   document.getElementById('ctext').style.top = (((document.getElementById('game').offsetHeight *.97) - document.getElementById('ctext').offsetHeight) / 2) + 'px';
+}
+function moveFSbutton() {
+  //check for and move fullscreen button to the bottom-right of the screen...
+  document.getElementById('fs').style.left = (document.getElementById('cont').offsetWidth - document.getElementById('fs').offsetWidth) + 'px';
+  document.getElementById('fs').style.top = (document.getElementById('cont').offsetHeight - document.getElementById('fs').offsetHeight) + 'px';
 }
 function initCombo() {
   //make sure the nums array is empty
@@ -283,23 +314,19 @@ function fullScreenToggle() {
   var isFS = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
   if (isFS) {
     killFS.call(document, function() {});
-    if (document.getElementById('fs')) {
-      document.getElementById('fs').classList.remove('fsd')
-      document.getElementById('fs').classList.add('fsu');
-    }
+    document.getElementById('fsI').classList.remove('fsd')
+    document.getElementById('fsI').classList.add('fsu');
   } else {
     getFS.call(document.documentElement, function() {});
-    if (document.getElementById('fs')) {
-      document.getElementById('fs').classList.remove('fsu')
-      document.getElementById('fs').classList.add('fsd');
-    }
+    document.getElementById('fsI').classList.remove('fsu')
+    document.getElementById('fsI').classList.add('fsd');
   }
 }
 function toggleSettings() {
-  if (document.getElementById('settns').style.visibility === 'hidden') {
-    document.getElementById('settns').style.visibility = 'visible';
+  if (!document.getElementById('settns')) {
+    createSettings();
   } else {
-    document.getElementById('settns').style.visibility = 'hidden';
+    document.getElementById('cont').removeChild(document.getElementById('settns'));
     newGame();
   }
 }

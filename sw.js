@@ -9,7 +9,7 @@
   https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
 */
 //I will default to using the date in the name instead of versioning.
-var CACHE_NAME = 'tColors-2016-11-23-1';
+var CACHE_NAME = 'tColors';
 //for more than one cache list, use an array:
 //var cacheList = ['pages-cache-v1', 'blog-posts-cache-v1'];
 /*
@@ -58,6 +58,8 @@ self.addEventListener('install', function(event) {
   Would we need to specify the list of files to cache?!?
 
 */
+/* - - use the other rolling release code - -
+
 self.addEventListener('fetch', function(event) {
   event.respondWith(caches.match(event.request).then(function(response) {
     // Cache hit - return response
@@ -87,14 +89,18 @@ self.addEventListener('fetch', function(event) {
     });
   }));
 });
+*/
+
 /*
+- -shouldn't be needed in the rolling release update version (below) - -
+but keep in so it deletes the other cache :)
+
   This last bit is for updating the service/app.
   I will assume that the SW is always upgraded,
   along with any file in the app...  or does the SW
   somehow check for newer files of the ones that are
   cached?!?
 */
-//hopefully I have understood the activate axample, and modified it correctly for a single cache name:
 self.addEventListener('activate', function(event) {
   event.waitUntil(caches.keys().then(function(cacheNames) {
     return Promise.all(cacheNames.map(function(cacheName) {
@@ -104,6 +110,10 @@ self.addEventListener('activate', function(event) {
     }));
   }));
 });
+
+
+
+
 /*
   from https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/
   This seems VERY useful for my app/game thing, because I might only update a few characters
@@ -115,7 +125,7 @@ self.addEventListener('activate', function(event) {
   have any choice in when an update happens (if online).
 */
 //Stale-while-revalidate - If there's a cached version available, use it, but fetch an update for next time.
-/*
+
 self.addEventListener('fetch', function(event) {
   event.respondWith(caches.open(CACHE_NAME).then(function(cache) {
     return cache.match(event.request).then(function(response) {
@@ -127,7 +137,7 @@ self.addEventListener('fetch', function(event) {
     })
   }));
 });
-*/
+
 /*
 self.addEventListener('fetch', function(event) {
   event.respondWith(caches.match(event.request).then(function(response) {
