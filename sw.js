@@ -9,7 +9,7 @@
   https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
 */
 //I will default to using the date in the name instead of versioning.
-var CACHE_NAME = 'tColors';
+var CACHE_NAME = 'toddlercolors-2016-11-25';
 //for more than one cache list, use an array:
 //var cacheList = ['pages-cache-v1', 'blog-posts-cache-v1'];
 /*
@@ -56,9 +56,7 @@ self.addEventListener('install', function(event) {
   Question:
   If the app uses AJAX to get all of the neccessary files, 
   Would we need to specify the list of files to cache?!?
-
 */
-/* - - use the other rolling release code - -
 
 self.addEventListener('fetch', function(event) {
   event.respondWith(caches.match(event.request).then(function(response) {
@@ -89,12 +87,9 @@ self.addEventListener('fetch', function(event) {
     });
   }));
 });
-*/
+
 
 /*
-- -shouldn't be needed in the rolling release update version (below) - -
-but keep in so it deletes the other cache :)
-
   This last bit is for updating the service/app.
   I will assume that the SW is always upgraded,
   along with any file in the app...  or does the SW
@@ -111,55 +106,3 @@ self.addEventListener('activate', function(event) {
   }));
 });
 
-
-
-
-/*
-  from https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/
-  This seems VERY useful for my app/game thing, because I might only update a few characters
-  in a single file. If I did need to release a big update, I could do the versioning method.
-
-  Could this also be considered 'Rolling Release' instead of 'Version Release'?
-
-  One thing I do not like about all of this stuff though, is that the end user doesn't appear to
-  have any choice in when an update happens (if online).
-*/
-//Stale-while-revalidate - If there's a cached version available, use it, but fetch an update for next time.
-
-self.addEventListener('fetch', function(event) {
-  event.respondWith(caches.open(CACHE_NAME).then(function(cache) {
-    return cache.match(event.request).then(function(response) {
-      var fetchPromise = fetch(event.request).then(function(networkResponse) {
-        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-          cache.put(event.request, networkResponse.clone());
-          return networkResponse;
-        }
-      })
-      return response || fetchPromise;
-    })
-  }));
-});
-
-/*
-self.addEventListener('fetch', function(event) {
-  event.respondWith(caches.match(event.request).then(function(response) {
-    // Cache hit - return response
-    if (response) {
-      return response;
-    }
-    var fetchRequest = event.request.clone();
-    return fetch(fetchRequest).then(function(response) {
-      // Check if we received a valid response
-      if (!response || response.status !== 200 || response.type !== 'basic') {
-        return response;
-      }
-      var responseToCache = response.clone();
-      caches.open(CACHE_NAME).then(function(cache) {
-        cache.put(event.request, responseToCache);
-      });
-      return response;
-    });
-  }));
-});
-
-*/
