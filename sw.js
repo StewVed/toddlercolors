@@ -9,7 +9,8 @@
   https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
 */
 //I will default to using the date in the name instead of versioning.
-var CACHE_NAME = 'toddlercolors-2016-11-25';
+//var CACHE_NAME = 'toddlercolors-2016-11-25';
+var CACHE_NAME = 'toddlercolors';
 //for more than one cache list, use an array:
 //var cacheList = ['pages-cache-v1', 'blog-posts-cache-v1'];
 /*
@@ -41,6 +42,9 @@ OK sw.js returned an Uncaught (in promise) TypeError so I will assume it doesn't
 hmm looks like a chrome extension is getting in the way!
 chrome-extension:
 */
+/* 
+  leave this out in the hope that the RR (Rolling Release) style works after all!
+  
 var urlsToCache = ['index.html', 'appmanifest', 'main.css', 'loader.js', 'initialize.js', 'inputs.js', 'storage.js', 'main.js', 'favicon.png', 'favicon.svg', 'favicon256.png'];
 self.addEventListener('install', function(event) {
   event.waitUntil(caches.open(CACHE_NAME).then(function(cache) {
@@ -48,6 +52,25 @@ self.addEventListener('install', function(event) {
     return cache.addAll(urlsToCache);
   }));
 });
+*/
+/*
+  put the code that errors on chrome-extensions back in 
+*/
+
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.open('toddlercolors').then(function(cache) {
+      return cache.match(event.request).then(function(response) {
+        var fetchPromise = fetch(event.request).then(function(networkResponse) {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        })
+        return response || fetchPromise;
+      })
+    })
+  );
+});
+
 /*
   in this next peice of code, the SW asks the server
   for a file that the app requested.
@@ -57,7 +80,7 @@ self.addEventListener('install', function(event) {
   If the app uses AJAX to get all of the neccessary files, 
   Would we need to specify the list of files to cache?!?
 */
-
+/*
 self.addEventListener('fetch', function(event) {
   event.respondWith(caches.match(event.request).then(function(response) {
     // Cache hit - return response
@@ -87,7 +110,7 @@ self.addEventListener('fetch', function(event) {
     });
   }));
 });
-
+*/
 
 /*
   This last bit is for updating the service/app.

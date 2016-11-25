@@ -48,12 +48,6 @@ function InitMain() {
   storageCheck();
   //check if the user has modified the volume level:
   var dataToLoad = storageLoad('vol');
-  if (dataToLoad) {
-    globVol = parseFloat(dataToLoad);
-    //move the volume slider to the loaded volume
-    volUpdate();
-  }
-
   /*
     make the circles smoothly make a ring around the inside of the Game circle.
   */
