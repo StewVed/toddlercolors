@@ -11,16 +11,13 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="64"
    height="64"
-   viewBox="0 0 63.999999 63.999999"
-   id="svg5730"
+   id="svg4136"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="favicon.svg"
-   inkscape:export-filename="C:\Users\StewVed\Documents\GitHub\MemGuess\favicon.png"
-   inkscape:export-xdpi="90.002319"
-   inkscape:export-ydpi="90.002319">
+   viewBox="0 0 64 64"
+   sodipodi:docname="favicon.svg">
   <defs
-     id="defs5732" />
+     id="defs4138" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -28,24 +25,20 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2"
-     inkscape:cx="-14.734176"
-     inkscape:cy="37.964317"
-     inkscape:document-units="px"
+     inkscape:zoom="7.7781746"
+     inkscape:cx="10.947957"
+     inkscape:cy="31.708258"
      inkscape:current-layer="layer1"
-     showgrid="false"
+     showgrid="true"
+     inkscape:document-units="px"
+     inkscape:grid-bbox="true"
      inkscape:window-width="1366"
      inkscape:window-height="745"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0"
-     units="px" />
+     inkscape:window-maximized="1" />
   <metadata
-     id="metadata5735">
+     id="metadata4141">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -57,68 +50,72 @@
     </rdf:RDF>
   </metadata>
   <g
+     id="layer1"
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-0.37500763,-0.5033809)">
+     style="display:inline">
     <ellipse
-       style="display:inline;fill:#f4e3d7;fill-opacity:1;fill-rule:nonzero"
-       id="path5696"
-       cx="32.379803"
-       cy="32.501377"
-       inkscape:export-xdpi="90.002319"
-       inkscape:export-ydpi="90.002319"
-       rx="32.000889"
-       ry="32.000229" />
+       style="fill:#ff2525;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.98411793;stroke-opacity:1"
+       id="path4684"
+       cx="31.738934"
+       cy="11.085879"
+       rx="9.4499378"
+       ry="9.1516027" />
     <ellipse
-       style="display:inline;fill:#ff2525;fill-opacity:1;fill-rule:nonzero"
-       id="path5655"
-       cx="44.937416"
-       cy="45.617321"
-       inkscape:export-xdpi="90.002319"
-       inkscape:export-ydpi="90.002319"
-       rx="11.504251"
-       ry="11.504011" />
+       style="fill:#ff7f2a;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.98411793;stroke-opacity:1"
+       id="path4684-5"
+       cx="49.557098"
+       cy="19.427778"
+       rx="9.4499378"
+       ry="9.1516027" />
     <ellipse
-       style="display:inline;fill:#00ff00;fill-opacity:1;fill-rule:nonzero"
-       id="path5655-5"
-       cx="44.95034"
-       cy="21.187992"
-       inkscape:export-xdpi="90.002319"
-       inkscape:export-ydpi="90.002319"
-       rx="11.504251"
-       ry="11.504011" />
+       style="fill:#ffff00;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.98411793;stroke-opacity:1"
+       id="path4684-1"
+       cx="53.909988"
+       cy="37.701103"
+       rx="9.4499378"
+       ry="9.1516027" />
     <ellipse
-       style="display:inline;fill:#3950ff;fill-opacity:1;fill-rule:nonzero"
-       id="path5655-51"
-       cx="20.491524"
-       cy="21.343599"
-       inkscape:export-xdpi="90.002319"
-       inkscape:export-ydpi="90.002319"
-       rx="11.504251"
-       ry="11.504011" />
+       style="fill:#00ff00;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.98411793;stroke-opacity:1"
+       id="path4684-16"
+       cx="41.372791"
+       cy="52.824684"
+       rx="9.4499378"
+       ry="9.1516027" />
     <ellipse
-       style="display:inline;fill:#ffff00;fill-opacity:1;fill-rule:nonzero"
-       id="path5655-9"
-       cx="20.491524"
-       cy="45.683216"
-       inkscape:export-xdpi="90.002319"
-       inkscape:export-ydpi="90.002319"
-       rx="11.504251"
-       ry="11.504011" />
+       style="fill:#0000ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.98411793;stroke-opacity:1"
+       id="path4684-8"
+       cx="21.291973"
+       cy="52.79129"
+       rx="9.4499378"
+       ry="9.1516027" />
+    <ellipse
+       style="fill:#800080;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.98411793;stroke-opacity:1"
+       id="path4684-14"
+       cx="10.062762"
+       cy="36.924809"
+       rx="9.4499378"
+       ry="9.1516027" />
+    <ellipse
+       style="fill:#ff00ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.98411793;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4684-9"
+       cx="13.073194"
+       cy="17.807856"
+       rx="9.4499378"
+       ry="9.1516027" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:73.78999329px;line-height:125%;font-family:Ebrima;-inkscape-font-specification:'Ebrima Bold';letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="17.661646"
-       y="59.86657"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:36.16628265px;line-height:125%;font-family:Ebrima;-inkscape-font-specification:'Ebrima Bold';letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="21.856281"
+       y="48.628941"
        id="text3344"
        sodipodi:linespacing="125%"
-       transform="scale(1.0013854,0.99861654)"
+       transform="scale(1.0724199,0.93247057)"
        inkscape:export-xdpi="90.002319"
        inkscape:export-ydpi="90.002319"><tspan
          sodipodi:role="line"
          id="tspan3346"
-         x="17.661646"
-         y="59.86657">?</tspan></text>
+         x="21.856281"
+         y="48.628941">?</tspan></text>
   </g>
 </svg>
