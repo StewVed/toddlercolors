@@ -202,23 +202,104 @@ function filesLoadedCheck() {
 function loaderReHeight() {
   document.getElementById('loading').style.top = ((window.innerHeight - document.getElementById('loading').offsetHeight) / 2) + 'px';
 }
+
 /*serviceworker (mostly) learned from:
+https://www.w3.org/TR/service-workers/
 https://developers.google.com/web/fundamentals/getting-started/primers/service-workers
 https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
 */
 function addServiceWorker() {
   if ('serviceWorker'in navigator) {
+
     //should the user be prompted whether they'd like this made available offline?
     navigator.serviceWorker.register('sw.js').then(function(registration) {
-      // Registration was successful
-      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      /*
-        let the user know that this is available offline,
-        and offer to 'install' (add to home page) maybe.
-      */
+      console.log('ServiceWorker registred');
+      
+      registration.addEventListener('updatefound'
+      , function(){
+          console.log('Service Worker update found!');
+          window.setTimeout(function() {
+           upNotOpen('<p>Update available!<br>Restart app to update.</p>');
+          }, 3000);
+      });
+
+      if (registration.installing) {
+        console.log('Service Worker installing...');
+      }
+
+      if (registration.waiting) {
+        console.log('Service Worker installed and waiting to activate.');
+      }
+      registration.addEventListener('statechange'
+      , function(e){
+          console.log('Service Worker Resgistration state changed: ' + e.state)
+      });
     }).catch(function(err) {
-      // registration failed :(
       console.log('ServiceWorker registration failed: ', err);
     });
+
+    //listen for communication from the ServiceWorker:
+    navigator.serviceWorker.addEventListener('message', swMessage);
+
+    /*
+      this next event should fire when a serviceWorker is:
+      installing, installed, activating, activated, redundant
+    */
+    navigator.serviceWorker.addEventListener('statechange', swSS);
+
+  }
+}
+
+function swSS(e) {
+  console.log('ServiceWorker State Change: ' + e.state);
+}
+//learned from https://serviceworke.rs/message-relay.html
+function swMessage(e) {
+  console.log('nessage received: ' + e.data);
+  if (e.data === 'updated') {
+    if (!isUpdated) {
+      isUpdated = 1;
+      window.setTimeout(function() {
+       upNotOpen('<p>app updated</p>')
+      }, 3000);
+      /*
+        IDEA:
+        swipe up for changelog, swipe down to dismiss.
+      */
+    }
+  }
+  else if (e.data === 'Updating') {
+    if (!isUpdated) {
+      isUpdated = 1;
+      window.setTimeout(function() {
+       upNotOpen('<p>update downloaing...<br>Restart app to update.</p>')
+      }, 3000);
+    }
+  }
+
+
+  
+}
+function upNotOpen(msg) {
+  var newWindow = document.createElement('div');
+  newWindow.id = 'updateNotice';
+  document.body.appendChild(newWindow);
+  newWindow.innerHTML = msg;
+  newWindow.style.opacity = .9;
+  newWindow.style.top = (document.body.offsetHeight - newWindow.offsetHeight) + 'px';
+  window.setTimeout(function() {
+   upNotClose()
+  }, 5000);
+}
+function upNotClose() {
+  if (document.getElementById('updateNotice')) {
+    document.getElementById('updateNotice').style.opacity = 0;
+    document.getElementById('updateNotice').style.top = document.body.offsetHeight + 'px';
+    window.setTimeout(function() {
+      if (document.getElementById('updateNotice')) {
+        //after a second, once the element is hidden, remove it.
+        document.body.removeChild(document.getElementById('updateNotice'));
+      }
+    }, 1000);
   }
 }

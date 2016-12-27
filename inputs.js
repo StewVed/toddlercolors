@@ -137,6 +137,10 @@ function mouseMove(e) {
   var targ = findTarget(e);
   //check for onmouseout/onmousein events!
   if (mouseVars.targetCurrent != targ) {
+    if (mouseVars.type === 'click') {
+      mouseVars.type = 'drag';
+      window.clearTimeout(mouseVars.clickTimer);
+    }
     mouseMoveEnter(targ);
     mouseMoveOut(targ);
   }
@@ -151,12 +155,14 @@ function mouseMove(e) {
   mouseVars.targetCurrent = targ;
   mouseVars.xCurrent = e.clientX;
   mouseVars.yCurrent = e.clientY;
-  if (mouseVars.type == 'vol') {
+  if (mouseVars.type === 'vol') {
     volMove();
-  } else if (mouseVars.type == 'click') {
-    if (((mouseVars.xStart + 5) < e.clientX) || ((mouseVars.xStart - 5) > e.clientX) || ((mouseVars.yStart + 5) < e.clientY) || ((mouseVars.yStart - 5) > e.clientY)) {
-      //user has moved the cursor more than 5 pixels in any direction.
-      //turn the click into a move...
+  } else if (mouseVars.type === 'click') {
+    if (((mouseVars.xStart + 10) < e.clientX)
+        || ((mouseVars.xStart - 10) > e.clientX)
+        || ((mouseVars.yStart + 10) < e.clientY)
+        || ((mouseVars.yStart - 10) > e.clientY)
+       ) {
       mouseVars.type = 'drag';
       window.clearTimeout(mouseVars.clickTimer);
     }
