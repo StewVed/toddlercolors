@@ -79,7 +79,7 @@ body {
   border-radius: 64px;
 }
 
-.uButtonsDisabled {
+.uButtonDisabled {
   background-color: #d5d5d5;
   background: linear-gradient(#eeeeee, #d5d5d5);
   opacity: 0.5;
