@@ -58,7 +58,7 @@ function InitMain() {
   newGame();
 }
 function createButtons() {
-  var a = '<div id = "ctext" class="cont ctext">let\'s go!</div>' ;
+  var a = '<div id = "ctext" class="cont ctext">let&apos;s go!</div>' ;
 
   for (var x = 0; x < buttons; x++) {
     //add element to be a button
