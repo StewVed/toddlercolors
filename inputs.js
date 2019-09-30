@@ -22,9 +22,9 @@ function bubbleStop(e) {
 }
 function findTarget(e) {
   if (!e) {
-    var e = window.event;
+    e = window.event;
   }
-  targ = e.target || e.srcElement;
+  var targ = e.target || e.srcElement;
   if (targ.nodeType != 1) {
     //element nodes are 1, attribute, text, comment, etc. nodes are other numbers... I want the element.
     targ = targ.parentNode;
